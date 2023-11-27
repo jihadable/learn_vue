@@ -10,22 +10,14 @@ const router = useRouter()
 const username = ref("")
 const password = ref("")
 
+const usernameValid = "admin"
+const passwordValid = "1234"
+
 const isLogin = ref(null)
 
-const login = async() => {
-    const response = await fetch("http://localhost:3000/users/", {
-        method: "post",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username: username.value,
-            password: password.value
-        })
-    })
-    const data = await response.json()
-    console.log(data)
-    if (data.message == "login success"){
+const login = () => {
+    
+    if (username.value == usernameValid && password.value == passwordValid){
         authStore.username = username.value
         authStore.password = password.value
     
